@@ -20,11 +20,32 @@ Get comments from package specification and transform it to markdown.
 
 - row starts from this words at first column. It's mean not from space, tab or smth else.  
     
-
 - use `/*` and `*/` to comment block
 
-Example:
----
+- parameter name format `name(type):`  
+
+- after parameter name you can add parameter description  
+
+- if description have several rows then just repeat parameter full tag  
+
+```  
+$obj_param: p_item(clob): some text  
+$obj_param: p_item(clob): some additional info  
+``` 
+
+- to describe columns in parameter or return structure use this rules  
+	- first row ends with `{`
+	- last row is just `}`
+
+- to generate file README.md
+	- run this  
+`sqlplus user/pass@server/db @./path/to/generator/file`  
+but make sure you set correct `./README_OUT.md` path
+	- or at Sql Developer you can run just `@./path/to/generator/file`  
+but make sure you
+set correct `Preferences->Database->Worksheet->Select default path to look for scripts` path  
+
+##Example:
 
 ```
 /*  
@@ -47,8 +68,7 @@ $obj_return: }
 */  
 ```
 
-Result will be...
----
+##Result will be...   
 
 # MY\_FUNCTIONS
 ---
@@ -63,7 +83,7 @@ _PARAMETERS:_
   * y(number) is not null - length  
 
 }  
-**o\_error**(_varchar2**(_4000_)_): is null. output parameter. error message  
+**o\_error**(_varchar2(4000)_): is null. output parameter. error message  
 _RETURN:_  
 sys\_refcursor {  
 
@@ -72,12 +92,9 @@ sys\_refcursor {
 
 }  
 
----
 
-- to generate file run this  
-`sqlplus user/pass@server/db @./path/to/file`  
-but make sure you set correct `./README_OUT.md` path
+##TODO
+- add format for cursor parameters  
+- add exception messages  
 
-- at Sql Developer you can run just `@./path/to/file`  
-but make sure you
-set correct `Preferences->Database->Worksheet->Select default path to look for scripts` path  
+##Good luck!
