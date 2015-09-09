@@ -23,7 +23,8 @@ Get comments from package specification and transform it to markdown.
 
 - use `/*` and `*/` to comment block
 
-example:
+Example:
+---
 
 ```
 /*  
@@ -46,6 +47,32 @@ $obj_return: }
 */  
 ```
 
+Result will be...
+---
+
+# MY\_FUNCTIONS
+---
+
+### _function_ MY\_FUNCTIONS.SQUARE  
+_DESCRIPTION:_  
+calculate square of item and check is it a quadrate  
+_PARAMETERS:_  
+**p\_item**(_clob_): is not null. json {  
+
+  * x(number) is not null - height  
+  * y(number) is not null - length  
+
+}  
+**o\_error**(_varchar2**(_4000_)_): is null. output parameter. error message  
+_RETURN:_  
+sys\_refcursor {  
+
+  * square(number) is not null - value of square  
+  * is\_quadrate(varchar2(1)) is not null - flag y/n. is it quadrate?  
+
+}  
+
+---
 
 - to generate file run this  
 `sqlplus user/pass@server/db @./path/to/file`  
