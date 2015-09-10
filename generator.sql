@@ -307,6 +307,8 @@ dbms_output.put_line(i.text);
 end loop;
 end;
 /
+
+SPOOL off;
 exit;
 /
 
